@@ -1,0 +1,119 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+#container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #976969;
+}
+
+/*---------------- Header Styles -------------- */
+
+#hd{
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #131212;
+    margin-top: -555px;
+}
+
+/*---------------- Main Styles -------------- */
+
+#mn{
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #031b68;
+    margin-top: 555px;
+    gap: 10px;
+}
+
+#sec01{
+    width: 80%;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin: 20px;
+    /* border: 1px solid #110f0f;  */
+}
+
+#taskInput{
+    width: 50vw;
+    height: 50px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 5px;
+    margin-left: 100px;
+}
+
+.btn-add-task{
+    width: 9vw;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3c8a1e;
+    color: white;
+    font-size: 1.2em;
+    margin-left: 100px;
+}
+
+.btn-add-task:hover{
+    background-color: #335810;
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+#sec02{
+    width: 80%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+#taskList h2{
+   color: #6d5656;
+   margin-bottom: 210px;
+}
+
+/*---------------- Footer Styles -------------- */
+
+#ft{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #131212;
+    color: white;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+#ft p{
+    text-align: center;
+    font-weight: bold;
+
+}
+
