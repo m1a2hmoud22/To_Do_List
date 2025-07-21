@@ -5,115 +5,181 @@
     scroll-behavior: smooth;
 }
 
+
 #container{
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh; /* Use min-height to prevent content overflow on small screens */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: #976969;
+    background-color: #f0f2f5; /* A softer background color */
+    font-family: 'Arial', sans-serif;
 }
 
 /*---------------- Header Styles -------------- */
-
+/* The header is currently pushed off-screen, this part is not visible */
 #hd{
     width: 100%;
-    height: 20vh;
+    height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #131212;
-    margin-top: -555px;
+    color: white;
 }
 
 /*---------------- Main Styles -------------- */
 
 #mn{
     width: 100%;
-    height: 70vh;
+    max-width: 800px; /* Set a max-width for better readability on large screens */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: #031b68;
-    margin-top: 555px;
-    gap: 10px;
+    gap: 20px;
+    padding: 20px;
 }
 
 #sec01{
-    width: 80%;
-    height: 20vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
     border-radius: 10px;
-    margin: 20px;
-    /* border: 1px solid #110f0f;  */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#form {
+    display: flex;
+    gap: 10px;
 }
 
 #taskInput{
-    width: 50vw;
+    flex-grow: 1; /* Allows the input to take up available space */
     height: 50px;
     background-color: #f0f0f0;
+    border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
-    padding: 5px;
-    margin-left: 100px;
+    padding: 10px;
 }
 
 .btn-add-task{
-    width: 9vw;
+    width: 100px;
     height: 50px;
     border: none;
     border-radius: 5px;
-    background-color: #3c8a1e;
+    background-color: #28a745; /* A standard green color */
     color: white;
-    font-size: 1.2em;
-    margin-left: 100px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .btn-add-task:hover{
-    background-color: #335810;
-    cursor: pointer;
-    transform: scale(1.2);
+    background-color: #218838;
+    transform: scale(1.1);
 }
 
+/*---------------- Task List Styles (The main change is here) -------------- */
+
 #sec02{
-    width: 80%;
-    height: 50vh;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    margin: 20px;
+    gap: 15px;
 }
 
 #taskList h2{
-   color: #6d5656;
-   margin-bottom: 210px;
+   color: #333;
+   text-align: center;
+   margin-bottom: 10px; /* Removed the large margin */
 }
+
+#tasks {
+    list-style-type: none; /* Removes the default bullet points/numbers */
+    padding: 0;
+    width: 100%;
+    max-height: 40vh; /* Add a max height */
+    overflow-y: auto; /* Add a scrollbar if tasks exceed the height */
+}
+
+/* Style for each new task item */
+#tasks li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between; /* Puts text on left and button on right */
+    align-items: center;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+#tasks li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Style for the delete button */
+.delete-btn {
+    background-color: #dc3545; /* Red color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Style for the new "Complete" button */
+.complete-btn {
+    background-color: #28a745; /* Green color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-right: 5px; /* Add some space between the buttons */
+    transition: background-color 0.3s ease;
+}
+
+.complete-btn:hover {
+    background-color: #218838;
+}
+
+/* This is the style for the completed task */
+#tasks li.completed span {
+    text-decoration: line-through; /* Adds a line through the text */
+    color: #888; /* Makes the text color gray */
+}
+
 
 /*---------------- Footer Styles -------------- */
 
 #ft{
     width: 100%;
-    height: 10vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    padding: 20px;
     background-color: #131212;
     color: white;
-    font-size: 1.2em;
-    margin-top: 20px;
+    text-align: center;
+    margin-top: auto; /* Pushes footer to the bottom */
+
 }
 
 #ft p{
-    text-align: center;
-    font-weight: bold;
-
+    margin: 05px 0;
+    font-size: 1.1em;
+    font-weight: 500;
 }
-
