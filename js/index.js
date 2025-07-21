@@ -3,60 +3,98 @@ document.addEventListener('DOMContentLoaded', function () {
     const taskForm = document.getElementById('form');
     const taskInput = document.getElementById('taskInput');
     const taskList = document.getElementById('tasks');
+    const originalPlaceholder = taskInput.placeholder;
+
+    // Step 1: Load tasks from localStorage when the page loads
+    loadTasks();
 
     taskForm.addEventListener('submit', function (event) {
         event.preventDefault();
-
         const taskText = taskInput.value.trim();
 
         if (taskText !== '') {
-            addTask(taskText); // Call a function to add the task
-            taskInput.value = ''; // Clear the input field
-            taskInput.focus(); // Put the cursor back in the input field
+            addTask(taskText, false); // Add new task, default to not completed
+            taskInput.value = '';
+            taskInput.focus();
+            saveTasks(); // Save after adding a new task
+        } else {
+            taskInput.placeholder = 'Please enter a task';
         }
     });
 
-    function addTask(text) {
-        // 1. Create the list item (li)
-        const li = document.createElement('li');
+    taskInput.addEventListener('focus', function() {
+        taskInput.placeholder = originalPlaceholder;
+    });
 
-        // 2. Create a span to hold the task text
+    /**
+     * Adds a task to the list on the screen.
+     * @param {string} text - The text of the task.
+     * @param {boolean} isCompleted - The completion status of the task.
+     */
+    function addTask(text, isCompleted) {
+        const li = document.createElement('li');
+        if (isCompleted) {
+            li.classList.add('completed'); // If task was saved as completed, apply the style
+        }
+
         const taskSpan = document.createElement('span');
         taskSpan.textContent = text;
         
-        // 3. Create a container for the buttons
         const buttonsDiv = document.createElement('div');
 
-        // 4. Create the "Complete" button
         const completeBtn = document.createElement('button');
-        completeBtn.textContent = 'complete'; // "Done" in Arabic
+        completeBtn.textContent = 'إنجاز';
         completeBtn.className = 'complete-btn';
-
-        // Add event listener to the "Complete" button
         completeBtn.addEventListener('click', function () {
-            // Toggle the 'completed' class on the whole list item (li)
             li.classList.toggle('completed');
+            saveTasks(); // Save after toggling completion
         });
 
-        // 5. Create the "Delete" button
         const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = ' delete '; // "Delete" in Arabic
+        deleteBtn.textContent = 'حذف';
         deleteBtn.className = 'delete-btn';
-
-        // Add event listener to the "Delete" button
         deleteBtn.addEventListener('click', function () {
-            taskList.removeChild(li); // Remove the li element when clicked
+            taskList.removeChild(li);
+            saveTasks(); // Save after deleting a task
         });
 
-        // 6. Append buttons to their container
         buttonsDiv.appendChild(completeBtn);
         buttonsDiv.appendChild(deleteBtn);
 
-        // 7. Append the span and the buttons container to the list item
         li.appendChild(taskSpan);
         li.appendChild(buttonsDiv);
 
-        // 8. Append the list item to the task list (ol)
         taskList.appendChild(li);
+    }
+
+    /**
+     * Saves all current tasks to localStorage.
+     */
+    function saveTasks() {
+        const tasks = [];
+        // Loop through all the <li> elements on the page
+        document.querySelectorAll('#tasks li').forEach(function(li) {
+            // Create an object for each task
+            const task = {
+                text: li.querySelector('span').textContent,
+                completed: li.classList.contains('completed')
+            };
+            tasks.push(task);
+        });
+        // Convert the array of objects to a string and save it
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    /**
+     * Loads tasks from localStorage and displays them.
+     */
+    function loadTasks() {
+        // Get the saved tasks string, or an empty array if nothing is saved
+        const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        
+        // Loop through the saved tasks and add them to the page
+        savedTasks.forEach(function(task) {
+            addTask(task.text, task.completed);
+        });
     }
 });

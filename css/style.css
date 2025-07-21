@@ -20,12 +20,34 @@
 /* The header is currently pushed off-screen, this part is not visible */
 #hd{
     width: 100%;
-    height: 10vh;
+    height: 15vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     background-color: #131212;
     color: white;
+}
+
+img {
+width: 290px;
+height: 290px;
+margin-top: 40px;
+
+}
+
+.social-icons {
+    display: flex;
+    gap: 25px;
+}
+.social-icons a {
+    color: #ffffff;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #5c306d;
+    transform: scale(1.1);
 }
 
 /*---------------- Main Styles -------------- */
@@ -182,4 +204,70 @@
     margin: 05px 0;
     font-size: 1.1em;
     font-weight: 500;
+}
+
+/* -----media queries for responsiveness -------------- */
+
+/* We will apply these styles for screens smaller than 768px */
+@media (max-width: 768px) {
+
+    /* Adjust main container padding for smaller screens */
+    #mn {
+        padding: 10px;
+    }
+
+    /* --- Header Adjustments --- */
+    #hd {
+        flex-direction: column; /* Stack logo and icons vertically */
+        height: auto;           /* Allow header height to adjust to content */
+        padding: 20px 0;        /* Add some vertical padding */
+        gap: 10px;              /* Add space between logo and icons */
+    }
+
+    .social-icons a{
+        margin-top: -20px;
+    }
+
+    img {
+        width: 150px;           /* Reduce logo size */
+        height: 150px;
+        margin-top: 0;          /* Remove the top margin */
+    }
+
+    /* --- Form Adjustments --- */
+    #form {
+        flex-direction: column; /* Stack the input field and button vertically */
+    }
+
+    .btn-add-task {
+        width: 100%;            /* Make the button take the full width */
+    }
+
+
+    /* --- Task List Adjustments --- */
+    #tasks li {
+        /* On small screens, stack the task text and buttons vertically */
+        flex-direction: column;
+        align-items: flex-start; /* Align content to the left */
+        gap: 15px;               /* Add space between text and buttons */
+    }
+
+    #tasks li span {
+        /* Ensure the task text can wrap if it's too long */
+        word-break: break-all;
+    }
+
+    /* Adjust font sizes for better readability on mobile */
+    #taskList h2 {
+        font-size: 1.5em;
+    }
+
+    #tasks li {
+        font-size: 1em;
+    }
+
+    /* --- Footer Adjustments --- */
+    #ft p {
+        font-size: 1em;
+    }
 }
