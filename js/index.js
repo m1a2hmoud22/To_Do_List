@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const buttonsDiv = document.createElement('div');
 
         const completeBtn = document.createElement('button');
-        completeBtn.textContent = 'إنجاز';
+        completeBtn.textContent = 'Complete';
         completeBtn.className = 'complete-btn';
         completeBtn.addEventListener('click', function () {
             li.classList.toggle('completed');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = 'حذف';
+        deleteBtn.textContent = 'delete';
         deleteBtn.className = 'delete-btn';
         deleteBtn.addEventListener('click', function () {
             taskList.removeChild(li);
